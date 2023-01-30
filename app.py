@@ -98,7 +98,7 @@ class MovieView(Resource):
         with db.session.begin():
             db.session.add(new_movie)
 
-        return "User created", 201
+        return "Movie created", 201
 
 
 @movie_ns.route("/<int:uid>")
@@ -106,7 +106,7 @@ class MovieView(Resource):
     def get(self, uid: int):
         movie = db.session.query(Movie).get(uid)
         if not movie:
-            return "User not found", 404
+            return "Movie not found", 404
         return movies_shema.dump(movie), 200
 
     def put(self, uid: int):
